@@ -1,0 +1,36 @@
+<div class="section-header">
+  <h1>💼 Jobs at <%= @company.name %></h1>
+</div>
+
+<div class="action-links">
+  <%= link_to " Post New Job", new_company_job_path(@company), class: "btn-create" %>
+</div>
+
+<% if @jobs.any? %>
+  <div style="margin-top: 60px; text-align: center;">
+    <h2 style="font-size: 28px; font-weight: bold; color: #6a0dad; margin-bottom: 20px;">💼 All Jobs</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+      <% @jobs.each do |job| %>
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; border: 1px solid #6a0dad; width: 300px;">
+          <h3 style="font-size: 20px; font-weight: bold; color: white; margin-bottom: 10px;"><%= job.title %></h3>
+          <p style="color: #bbb; font-size: 14px; margin-bottom: 5px;"><strong>Company:</strong> <%= job.company.name %></p>
+          <p style="color: #ccc; font-size: 13px; margin-bottom: 10px;"><%= truncate(job.description, length: 100) %></p>
+          <p style="font-size: 12px; color: #999; font-style: italic;"><%= job.location %> | <%= job.job_type %></p>
+
+          <div class="job-actions">
+          <%= link_to "View", company_job_path(@company, job), class: "btn-view" %>
+          <%= link_to "Edit", edit_company_job_path(@company, job), class: "btn-edit" %>
+          <%= button_to " Delete", company_job_path(@company, job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-edit" %>
+
+        </div>
+
+        </div>
+        
+      <% end %>
+    </div>
+  </div>
+  <% else %>
+  <div class="empty-state">
+    No jobs posted yet. Use the button above to add a new job.
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<div class="section-header">
+  <h1>Job Details</h1>
+  <p>Complete information about this job listing.</p>
+</div>
+
+<div style="max-width: 700px; margin: 0 auto; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; border: 1px solid #6a0dad;">
+  <h2 style="font-size: 26px; font-weight: bold; color: #dabfff; margin-bottom: 10px;"><%= @job.title %></h2>
+
+  <p style="color: #bbb; font-size: 15px; margin-bottom: 8px;"><strong>Company:</strong> <%= @job.company.name %></p>
+  <p style="color: #bbb; font-size: 15px; margin-bottom: 8px;"><strong>Location:</strong> <%= @job.location %></p>
+  <p style="color: #bbb; font-size: 15px; margin-bottom: 8px;"><strong>Job Type:</strong> <%= @job.job_type %></p>
+
+  <div style="margin-top: 20px; color: #ddd; font-size: 15px; line-height: 1.6;">
+    <%= simple_format(@job.description) %>
+  </div>
+
+  <div class="job-actions" style="text-align: center; margin-top: 30px;">
+    <%= link_to " Edit Job", edit_company_job_path(@job.company, @job), class: "btn-edit" %>
+    <%= button_to " Delete", company_job_path(@company, job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-edit" %>
+    <%= link_to "Back to Jobs", company_jobs_path(@job.company), class: "btn-view" %>
+
+  </div>
+</div>

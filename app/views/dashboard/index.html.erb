@@ -1,0 +1,49 @@
+<!-- app/views/dashboard/index.html.erb -->
+<div style="text-align: center; margin-bottom: 40px;">
+  <h1 style="font-size: 36px; font-weight: bold; color: #6a0dad;">🚀 Dashboard</h1>
+  <p style="margin-top: 10px; font-size: 18px; color: #ccc;">
+    Welcome, <span style="color: #6a0dad; font-weight: bold;"><%= current_user.first_name %></span>! Manage your companies and jobs.
+  </p>
+</div>
+
+<div style="text-align: center; margin-bottom: 30px;">
+  <%= link_to "Create New Company", new_company_path, style: "background-color: #6a0dad; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" %>
+</div>
+
+<% if @companies.any? %>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+    <% @companies.each do |company| %>
+      <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; border: 1px solid #6a0dad; width: 300px; text-align: left;">
+        <h3 style="font-size: 24px; font-weight: bold; color: white; margin-bottom: 10px;"><%= company.name %></h3>
+        <p style="font-size: 14px; color: #aaa; margin-bottom: 5px;"><%= company.location.presence || "Unknown location" %></p>
+        <p style="color: #ccc; font-style: italic; margin-bottom: 15px;"><%= truncate(company.description, length: 100) %></p>
+
+        <div style="text-align: center;">
+          <%= link_to "🔍 View", company_path(company), style: "font-size: 14px; color: #4da6ff; margin-right: 10px; text-decoration: none;" %>
+          <%= link_to "✏️ Edit", edit_company_path(company), style: "font-size: 14px; color: #ffcc00; margin-right: 10px; text-decoration: none;" %>
+          <%= link_to "🗂 Jobs", company_jobs_path(company), style: "font-size: 14px; color: #66ff66; text-decoration: none;" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div style="margin-top: 50px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; text-align: center; color: #dabfff;">
+     No companies yet. Click “Create New Company” to begin.
+  </div>
+<% end %>
+
+<% if @jobs.any? %>
+  <div style="margin-top: 60px; text-align: center;">
+    <h2 style="font-size: 28px; font-weight: bold; color: #6a0dad; margin-bottom: 20px;">💼 All Jobs</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+      <% @jobs.each do |job| %>
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; border: 1px solid #6a0dad; width: 300px;">
+          <h3 style="font-size: 20px; font-weight: bold; color: white; margin-bottom: 10px;"><%= job.title %></h3>
+          <p style="color: #bbb; font-size: 14px; margin-bottom: 5px;"><strong>Company:</strong> <%= job.company.name %></p>
+          <p style="color: #ccc; font-size: 13px; margin-bottom: 10px;"><%= truncate(job.description, length: 100) %></p>
+          <p style="font-size: 12px; color: #999; font-style: italic;"><%= job.location %> | <%= job.job_type %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

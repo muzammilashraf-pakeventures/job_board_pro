@@ -1,0 +1,14 @@
+<div class="section-header">
+  <h1>🏢 <%= @company.name %></h1>
+  <p class="meta-info"><%= @company.location.presence || "Unknown Location" %></p>
+</div>
+
+<div class="company-description">
+  <p><%= @company.description %></p>
+</div>
+
+<div class="action-links">
+  <%= link_to "Edit", edit_company_path(@company), class: "btn-edit" %>
+  <%= link_to "View Jobs", company_jobs_path(@company), class: "btn-jobs" %>
+</div>
+

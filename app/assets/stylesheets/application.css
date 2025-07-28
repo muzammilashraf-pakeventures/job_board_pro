@@ -1,0 +1,151 @@
+body {
+  background: #1c1c1c;
+  font-family: Arial, sans-serif;
+  color: #eee;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1); /* updated */
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #6a0dad; /* added */
+}
+
+.job-card {
+  background: rgba(255, 255, 255, 0.1); /* updated */
+  border: 1px solid #6a0dad; /* already present */
+  border-radius: 16px;
+  padding: 20px;
+  width: 300px;
+  color: white;
+}
+
+.empty-state {
+  background: rgba(255, 255, 255, 0.1); /* updated */
+  padding: 30px;
+  text-align: center;
+  border-radius: 16px;
+  border: 1px solid #6a0dad; /* added */
+  color: #dabfff;
+  margin-top: 40px;
+}
+
+.section-header h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #6a0dad;
+}
+
+.section-header p {
+  font-size: 16px;
+  color: #bbb;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  color: #ccc;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #6a0dad;
+  border-radius: 10px;
+  background: #2b2b2b;
+  color: white;
+}
+
+.form-actions {
+  text-align: center;
+}
+
+.submit-btn {
+  background-color: #6a0dad;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.job-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #6a0dad;
+  border-radius: 16px;
+  padding: 20px;
+  width: 300px;
+  color: white;
+}
+
+.job-card h2 {
+  color: #dabfff;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.meta-info {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+.job-actions {
+  text-align: center;
+}
+
+.action-links {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.btn-create, .btn-view, .btn-edit, .btn-jobs {
+  background-color: #6a0dad;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 15px;
+  text-decoration: none;
+  margin: 0 5px;
+  font-size: 14px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+}
+
+.btn-view { background-color: #4da6ff; }
+.btn-edit { background-color: #ffcc00; color: black; }
+.btn-jobs { background-color: #66ff66; color: black; }
+
+.empty-state {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  text-align: center;
+  border-radius: 16px;
+  color: #dabfff;
+  margin-top: 40px;
+}

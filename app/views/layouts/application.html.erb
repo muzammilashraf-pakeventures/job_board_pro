@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Job Board Pro" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(145deg, #2c2f36, #1c1f26);
+        color: #e1e1e1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .content-wrapper {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.03);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(6px);
+      }
+
+      .footer {
+        text-align: center;
+        font-size: 14px;
+        margin: 30px 0 15px;
+        color: #aaa;
+      }
+
+      .footer a {
+        color: #ccc;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+        color: #fff;
+      }
+
+      .alert {
+        padding: 15px 20px;
+        border-radius: 8px;
+        font-weight: 500;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .alert-success {
+        background-color: #28a745cc;
+        color: white;
+      }
+
+      .alert-error {
+        background-color: #dc3545cc;
+        color: white;
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav style="text-align: right; padding: 15px;">
+    <% if user_signed_in? %>
+      <span style="margin-right: 10px;">👤 <%= current_user.first_name %></span>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn-logout", style: "padding: 8px 16px; background: #6a0dad; color: white; border-radius: 10px; text-decoration: none;" %>    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "btn-login" %>
+    <% end %>
+    </nav>
+    <% if notice %>
+      <div class="alert alert-success fade-in" style="position: fixed; top: 20px; right: 20px; z-index: 1000; max-width: 400px;">
+        <%= notice %>
+      </div>
+    <% end %>
+    
+    <% if alert %>
+      <div class="alert alert-error fade-in" style="position: fixed; top: 20px; right: 20px; z-index: 1000; max-width: 400px;">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <div class="main-container">
+      <div class="content-wrapper">
+        <%= yield %>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; <%= Time.current.year %> Job Board Pro. All rights reserved.</p>
+        <p>Made by <a href="mailto:muzammilkemu786@gmail.com">Muzammil</a></p>
+      </footer>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+          setTimeout(function() {
+            alert.style.opacity = '0';
+            alert.style.transform = 'translateX(100%)';
+            setTimeout(function() {
+              alert.remove();
+            }, 300);
+          }, 5000);
+        });
+      });
+    </script>
+  </body>
+</html>
